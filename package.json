@@ -26,12 +26,9 @@
   },
   "homepage": "https://github.com/daspawn/xlsx-stream-reader#readme",
   "dependencies": {
-    "jszip": "^3.1.5",
-    "klaw": "^3.0.0",
     "sax": "^1.2.4",
     "ssf": "^0.10.2",
     "temp": "^0.8.3",
-    "through2": "^3.0.0",
     "unzipper": "^0.8.13"
   },
   "devDependencies": {
