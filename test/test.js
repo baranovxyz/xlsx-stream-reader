@@ -62,8 +62,12 @@ describe("The xslx stream parser", function() {
     const rows = [];
     workBookReader.on("worksheet", function(workSheetReader) {
       workSheetReader.on("end", function() {
-        expect(rows[0][2]).to.equal(0);
-        expect(rows[0][3]).to.equal(1);
+        expect(rows[0][2]).to.equal('0');
+        expect(rows[0][3]).to.equal(0);
+        expect(rows[0][4]).to.equal(0);
+        expect(rows[1][2]).to.equal('1');
+        expect(rows[1][3]).to.equal(1);
+        expect(rows[1][4]).to.equal(1);
         done();
       });
       workSheetReader.on("row", function(r) {
