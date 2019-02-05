@@ -76,6 +76,25 @@ describe("The xslx stream parser", function() {
       workSheetReader.process();
     });
   });
+  it("parses empty cells correctly", function(done) {
+    var workBookReader = new XlsxStreamReader();
+    fs.createReadStream(path.join(__dirname, "empty.xlsx")).pipe(
+      workBookReader,
+    );
+    const rows = [];
+    workBookReader.on("worksheet", function(workSheetReader) {
+      workSheetReader.on("end", function() {
+        expect(rows[0][2]).to.equal('');
+        expect(rows[1][2]).to.equal('');
+        expect(rows[2][2]).to.equal('');
+        done();
+      });
+      workSheetReader.on("row", function(r) {
+        rows.push(r.values);
+      });
+      workSheetReader.process();
+    });
+  });
   it("catches zip format errors", function(done) {
     var workBookReader = new XlsxStreamReader();
     fs.createReadStream(path.join(__dirname, "notanxlsx")).pipe(workBookReader);
